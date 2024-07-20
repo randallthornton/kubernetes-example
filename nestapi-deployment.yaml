@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: nestapi
-          image: localhost/nest-api
+          image: docker.io/library/nest-api:2
           ports:
             - containerPort: 3000
           env:
@@ -42,7 +42,7 @@ spec:
               value: "20"
           imagePullPolicy: IfNotPresent
         - name: angularspa
-          image: localhost/angular-spa
+          image: docker.io/library/angular-spa:2
           ports:
             - containerPort: 80
           imagePullPolicy: IfNotPresent
