@@ -1,12 +1,26 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="flex gap-4">
   <button mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Angular SPA</span>
+  <div>Angular SPA</div>
 </mat-toolbar>
-@for (datum of data(); track $index) {
-<div class="grid grid-cols-1 gap-4 px-4">
-  <h1>{{ datum.id }}</h1>
-  <p>{{ datum.name }}</p>
+<div class="grid grid-cols-1 gap-4 m-4">
+  <mat-list>
+    @for (datum of data(); track $index) {
+    <mat-list-item>
+      <span matListItemTitle>{{ datum.id }}</span>
+      <span matListItemLine>{{ datum.name }}</span>
+    </mat-list-item>
+    }
+  </mat-list>
+
+  <form [formGroup]="form" class="grid grid-cols-1">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+  </form>
+  <button mat-raised-button color="primary" (click)="createData()">
+    <mat-icon>add</mat-icon> Add
+  </button>
 </div>
-}

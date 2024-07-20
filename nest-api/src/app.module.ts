@@ -5,14 +5,22 @@ import { DataController } from './data.controller';
 import { OrmService } from './orm/orm.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Data } from './data/data.entity';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      entities: [Data],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'sqlite',
+        database: configService.get('DB_DATABASE'),
+        entities: [Data],
+        synchronize: true,
+      }),
     }),
     TypeOrmModule.forFeature([Data]),
   ],

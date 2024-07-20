@@ -3,7 +3,7 @@ POST http://localhost:3000/data
 Content-Type: application/json
 
 {
-  "name": "John Doe"
+  "name": "Courtena"
 }
 ###
 GET http://localhost:3000/data
