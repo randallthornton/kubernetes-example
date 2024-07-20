@@ -1,1 +1,12 @@
-<router-outlet />
+<mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Angular SPA</span>
+</mat-toolbar>
+@for (datum of data(); track $index) {
+<div class="grid grid-cols-1 gap-4 px-4">
+  <h1>{{ datum.id }}</h1>
+  <p>{{ datum.name }}</p>
+</div>
+}

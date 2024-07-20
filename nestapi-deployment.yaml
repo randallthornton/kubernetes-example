@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         - name: nestapi
-          image: docker.io/library/nest-api
+          image: localhost/nest-api
           ports:
             - containerPort: 3000
           env:
