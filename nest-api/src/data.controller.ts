@@ -1,15 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { OrmService } from './orm/orm.service';
 
 @Controller('data')
 export class DataController {
-  constructor() {}
+  constructor(private ormService: OrmService) {}
 
   @Get()
-  getData(): any {
-    return [
-      { id: 1, name: 'First' },
-      { id: 2, name: 'Second' },
-      { id: 3, name: 'Third' },
-    ];
+  async getData() {
+    const stuff = await this.ormService.getData();
+
+    return stuff;
+  }
+
+  @Post()
+  async createData(@Body() request: { name: string }) {
+    const stuff = await this.ormService.createData({ name: request.name });
+
+    return stuff;
   }
 }
